@@ -7,7 +7,10 @@
   "dependencies": {
     "lodash": "^4.17.21"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,7 +25,4 @@
     "url": "https://github.com/n0fr1/js_hexlet/issues"
   },
   "homepage": "https://github.com/n0fr1/js_hexlet#readme"
-  
-  
-
 }
