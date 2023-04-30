@@ -52,7 +52,7 @@ function reverseInt(num){
     return result;     
 }
 
-//проверка числа на счастливое (обязательно требование: число четное)
+//проверка числа на счастливый билетик (обязательно требование: число четное)
 function isHappyTicket(ticket){
     let i = 0;
     const half = ticket.length / 2;
@@ -68,7 +68,7 @@ function isHappyTicket(ticket){
     return firstPart === secondPart;
 }
 
-//проверка на совершенно число (положительное целое число, равное сумме его положительных делителей)
+//проверка на совершенное число (положительное целое число, равное сумме его положительных делителей)
 function isPerfect(num) {
     if (num < 6) {
       return false;
@@ -103,6 +103,7 @@ function invertCaseRegular(str) {
     return result;
 }
 
+//1. Проверка на счастливое число (возводим составные числа в квадрат и складываем до тех пор, пока не получится 1)
 function isHappyNumber(num) {
     if (num === 0) {
         return false;
@@ -132,4 +133,3 @@ function isHappyNumber(num) {
     }
     return num === 1;
 } 
-isHappyNumber(7);
