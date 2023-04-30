@@ -111,25 +111,18 @@ function isHappyNumber(num) {
     if (num === 1) {
         return true;
     }
-    let result = Math.pow(num, 2);
     let curExpResult = 0;
-    //let test = 1;
     for (let i = 0; i < 10; i += 1) {        
-        console.log(result);
-        if (result === 1) {
+        if (Number(num) === 1) {
             break;
         } 
-        result = String(result);
-        for (let j = 0; j < result.length; j += 1) {            
-            let curExp = Math.pow(Number(result[j]), 2);
+        num = String(num);
+        for (let j = 0; j < num.length; j += 1) {            
+            let curExp = Math.pow(Number(num[j]), 2);
             curExpResult += curExp;            
         }    
-        result = curExpResult;
-        // if (test === 4) {
-        //     console.log(curExpResult);                
-        // } 
+        num = curExpResult;
         curExpResult = 0;                
-        //test += 1;
     }
     return num === 1;
-} 
+}
