@@ -105,24 +105,28 @@ function invertCaseRegular(str) {
 
 //1. Проверка на счастливое число (возводим составные числа в квадрат и складываем до тех пор, пока не получится 1)
 function isHappyNumber(num) {
-    if (num === 0) {
+    let result = num;
+    if (result === 0) {
         return false;
     }
-    if (num === 1) {
+    if (result === 1) {
         return true;
     }
     let curExpResult = 0;
     for (let i = 0; i < 10; i += 1) {        
-        if (Number(num) === 1) {
-            break;
+        if (Number(result) === 1) {
+            return true;
         } 
-        num = String(num);
-        for (let j = 0; j < num.length; j += 1) {            
-            let curExp = Math.pow(Number(num[j]), 2);
+        result = String(result);
+        for (let j = 0; j < result.length; j += 1) {            
+            const curExp = Number(result[j]) ** 2; //проверить линтер на pow
             curExpResult += curExp;            
         }    
-        num = curExpResult;
+        result = curExpResult;
         curExpResult = 0;                
     }
-    return num === 1;
+    return result === 1;
 }
+
+//шифровка сообщение: перестановка каждые два подряд идущих символа.
+//'move' --> 'omev'. Если число нечетно, то последний символ остаётся на своем месте.
