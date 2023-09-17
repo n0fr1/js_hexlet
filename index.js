@@ -230,3 +230,24 @@ const rotateLeft = (matrix) => {
     }
     return result;
   };
+
+  //Реализуйте и экспортируйте по умолчанию функцию, которая находит в массиве непрерывные возрастающие 
+  //на единицу последовательности чисел и возвращает массив с их перечислением.
+  const summaryRanges = (arr) => {
+    const result = [];
+    let strInterval;
+    let flag = false;
+    for (let j = 0; j < arr.length; j += 1) {
+      if (flag) {
+        if (arr[j + 1] - arr[j] !== 1) {
+          strInterval += arr[j];
+          flag = false;
+          result.push(strInterval);
+        }
+      } else if (arr[j + 1] - arr[j] === 1) {
+        strInterval = `${arr[j]}->`;
+        flag = true;
+      }
+    }
+    return result;
+  };
