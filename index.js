@@ -19,7 +19,7 @@ function fib(number) {
         }
     }
     return result;
-  }
+}
   
 //реализация FizzBuzz
 function fizzBuss(begin, end){
@@ -128,5 +128,105 @@ function isHappyNumber(num) {
     return result === 1;
 }
 
-//шифровка сообщение: перестановка каждые два подряд идущих символа.
-//'move' --> 'omev'. Если число нечетно, то последний символ остаётся на своем месте.
+//Реализуйте и экспортируйте по умолчанию функцию, 
+//которая принимает на вход массив интервалов и возвращает сумму всех длин интервалов. 
+//В данной задаче используются только интервалы целых чисел от -100 до 100 , которые представлены в виде массива.
+const unrollSort = (arr) => {
+    const result = [];
+    for (let j = 0; j < arr.length; j += 2) {
+      let start = arr[j];
+      const end = arr[j + 1];
+      if (start !== end) {
+        while (start <= end) {
+          result.push(start);
+          start += 1;
+        }
+      }
+    }
+    return result.sort((a, b) => a - b);
+  };
+  const sumIntervals = (arr) => {
+    const unrolledArr = unrollSort(arr.flat());
+    const uniqueArr = unrolledArr.filter((element, index) => unrolledArr.indexOf(element) === index);
+    let result = 0;
+    for (let j = 0; j < uniqueArr.length; j += 1) {
+      const next = uniqueArr[j + 1];
+      if (uniqueArr[j] + 1 === next) {
+        result += 1;
+      }
+    }
+    return result;
+  };
+  
+  //Реализуйте функцию getLongestLength(), принимающую на вход строку и возвращающую длину максимальной последовательности
+  // из неповторяющихся символов. Подстрока может состоять из одного символа.
+  const getLongestLength = (str) => {
+    let result = 0;
+    let sub = '';
+    for (const char of str) {
+      if (!sub.includes(char)) {
+        sub += char;
+        result = Math.max(sub.length, result);
+      } else {
+        const cut = sub.indexOf(char);
+        sub = sub.slice(cut + 1) + char;
+      }
+    }
+    return result;
+  };
+  
+  //Реализуйте и экспортируйте по умолчанию функцию, которая принимает двумерный массив 
+  //(матрицу) и возвращает новый массив, 
+  //основанный на переданном и измененный таким образом, что правая половина матрицы 
+  //становится зеркальной копией левой половины, симметричной относительно вертикальной оси матрицы. 
+  //Для простоты условимся, что матрица всегда имеет чётное количество столбцов и количество столбцов всегда равно количеству строк.
+  const getMirrorMatrix = (matrix) => {
+    for (const arr of matrix) {
+      let shift = arr.length - 1;
+      for (const num of arr) {
+        arr[shift] = num;
+        shift -= 1;
+      }
+    }
+    return matrix;
+  };
+
+//Реализуйте и экспортируйте функции rotateLeft() и rotateRight(), 
+//которые поворачивают матрицу влево (против часовой стрелки) 
+//и соответственно вправо (по часовой стрелке).
+//Матрица реализована на массивах.
+//Функции должны возвращать новую матрицу не изменяя исходную.
+const rotateLeft = (matrix) => {
+    const result = [];
+    let HorLength = matrix[0].length;
+    let yrow = 0;
+    let xrow = 0;
+    while (HorLength > 0) {
+      result.push([]);
+      xrow = 0;
+      /* eslint-disable-next-line */
+      for (const arr of matrix) {
+        result[yrow][xrow] = arr[HorLength - 1];
+        xrow += 1;
+      }
+      yrow += 1;
+      HorLength -= 1;
+    }
+    return result;
+  };
+  
+  const rotateRight = (matrix) => {
+    const result = [];
+    const MaxHorIndex = matrix[0].length;
+    for (let YRow = 0; YRow < MaxHorIndex; YRow += 1) {
+      result.push([]);
+      let MaxVerIndex = matrix.length - 1;
+      let XRow = 0;
+      while (MaxVerIndex >= 0) {
+        result[YRow][XRow] = matrix[MaxVerIndex][YRow];
+        MaxVerIndex -= 1;
+        XRow += 1;
+      }
+    }
+    return result;
+  };
